@@ -8,18 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		6997EAE91EFCBFA700029BCC /* HanlyKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997EAE81EFCBFA700029BCC /* HanlyKitTests.m */; };
+		6997EB301EFD236700029BCC /* HLTaskScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997EB2F1EFD236700029BCC /* HLTaskScheduler.m */; };
+		69BAB64A1EFD24DB00B48AB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB6491EFD24DB00B48AB4 /* main.m */; };
+		69BAB64D1EFD24DB00B48AB4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB64C1EFD24DB00B48AB4 /* AppDelegate.m */; };
+		69BAB6501EFD24DB00B48AB4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB64F1EFD24DB00B48AB4 /* ViewController.m */; };
+		69BAB6531EFD24DB00B48AB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69BAB6511EFD24DB00B48AB4 /* Main.storyboard */; };
+		69BAB6551EFD24DB00B48AB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69BAB6541EFD24DB00B48AB4 /* Assets.xcassets */; };
+		69BAB6581EFD24DB00B48AB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69BAB6561EFD24DB00B48AB4 /* LaunchScreen.storyboard */; };
+		69BAB66B1EFD255E00B48AB4 /* HLTaskScheduler.h in Sources */ = {isa = PBXBuildFile; fileRef = 6997EB2E1EFD236700029BCC /* HLTaskScheduler.h */; };
+		69BAB66C1EFD255E00B48AB4 /* HLTaskScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997EB2F1EFD236700029BCC /* HLTaskScheduler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6997EAE41EFCBFA700029BCC /* HanlyKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HanlyKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6997EAE81EFCBFA700029BCC /* HanlyKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HanlyKitTests.m; sourceTree = "<group>"; };
 		6997EAEA1EFCBFA700029BCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6997EAF31EFCC02100029BCC /* HLTaskScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTaskScheduler.h; sourceTree = "<group>"; };
-		6997EAF41EFCC02100029BCC /* HLTaskScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTaskScheduler.m; sourceTree = "<group>"; };
+		6997EB2E1EFD236700029BCC /* HLTaskScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTaskScheduler.h; sourceTree = "<group>"; };
+		6997EB2F1EFD236700029BCC /* HLTaskScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTaskScheduler.m; sourceTree = "<group>"; };
+		69BAB6461EFD24DB00B48AB4 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		69BAB6491EFD24DB00B48AB4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		69BAB64B1EFD24DB00B48AB4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		69BAB64C1EFD24DB00B48AB4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		69BAB64E1EFD24DB00B48AB4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		69BAB64F1EFD24DB00B48AB4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		69BAB6521EFD24DB00B48AB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		69BAB6541EFD24DB00B48AB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		69BAB6571EFD24DB00B48AB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		69BAB6591EFD24DB00B48AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69BAB6621EFD24DC00B48AB4 /* ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleTests.m; sourceTree = "<group>"; };
+		69BAB6641EFD24DC00B48AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6997EAE11EFCBFA700029BCC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69BAB6431EFD24DB00B48AB4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -32,10 +60,10 @@
 		6997EAC21EFCBFA700029BCC = {
 			isa = PBXGroup;
 			children = (
-				6997EAF31EFCC02100029BCC /* HLTaskScheduler.h */,
-				6997EAF41EFCC02100029BCC /* HLTaskScheduler.m */,
 				6997EACD1EFCBFA700029BCC /* HanlyKit */,
 				6997EAE71EFCBFA700029BCC /* HanlyKitTests */,
+				69BAB6471EFD24DB00B48AB4 /* Example */,
+				69BAB6611EFD24DC00B48AB4 /* ExampleTests */,
 				6997EACC1EFCBFA700029BCC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				6997EAE41EFCBFA700029BCC /* HanlyKitTests.xctest */,
+				69BAB6461EFD24DB00B48AB4 /* Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -51,6 +80,8 @@
 		6997EACD1EFCBFA700029BCC /* HanlyKit */ = {
 			isa = PBXGroup;
 			children = (
+				6997EB2E1EFD236700029BCC /* HLTaskScheduler.h */,
+				6997EB2F1EFD236700029BCC /* HLTaskScheduler.m */,
 			);
 			path = HanlyKit;
 			sourceTree = "<group>";
@@ -62,6 +93,39 @@
 				6997EAEA1EFCBFA700029BCC /* Info.plist */,
 			);
 			path = HanlyKitTests;
+			sourceTree = "<group>";
+		};
+		69BAB6471EFD24DB00B48AB4 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				69BAB64B1EFD24DB00B48AB4 /* AppDelegate.h */,
+				69BAB64C1EFD24DB00B48AB4 /* AppDelegate.m */,
+				69BAB64E1EFD24DB00B48AB4 /* ViewController.h */,
+				69BAB64F1EFD24DB00B48AB4 /* ViewController.m */,
+				69BAB6511EFD24DB00B48AB4 /* Main.storyboard */,
+				69BAB6541EFD24DB00B48AB4 /* Assets.xcassets */,
+				69BAB6561EFD24DB00B48AB4 /* LaunchScreen.storyboard */,
+				69BAB6591EFD24DB00B48AB4 /* Info.plist */,
+				69BAB6481EFD24DB00B48AB4 /* Supporting Files */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		69BAB6481EFD24DB00B48AB4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				69BAB6491EFD24DB00B48AB4 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		69BAB6611EFD24DC00B48AB4 /* ExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				69BAB6621EFD24DC00B48AB4 /* ExampleTests.m */,
+				69BAB6641EFD24DC00B48AB4 /* Info.plist */,
+			);
+			path = ExampleTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,6 +148,23 @@
 			productReference = 6997EAE41EFCBFA700029BCC /* HanlyKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		69BAB6451EFD24DB00B48AB4 /* Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69BAB6691EFD24DC00B48AB4 /* Build configuration list for PBXNativeTarget "Example" */;
+			buildPhases = (
+				69BAB6421EFD24DB00B48AB4 /* Sources */,
+				69BAB6431EFD24DB00B48AB4 /* Frameworks */,
+				69BAB6441EFD24DB00B48AB4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Example;
+			productName = Example;
+			productReference = 69BAB6461EFD24DB00B48AB4 /* Example.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -97,6 +178,10 @@
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 6997EACA1EFCBFA700029BCC;
+					};
+					69BAB6451EFD24DB00B48AB4 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -114,6 +199,7 @@
 			projectRoot = "";
 			targets = (
 				6997EAE31EFCBFA700029BCC /* HanlyKitTests */,
+				69BAB6451EFD24DB00B48AB4 /* Example */,
 			);
 		};
 /* End PBXProject section */
@@ -126,6 +212,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		69BAB6441EFD24DB00B48AB4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69BAB6581EFD24DB00B48AB4 /* LaunchScreen.storyboard in Resources */,
+				69BAB6551EFD24DB00B48AB4 /* Assets.xcassets in Resources */,
+				69BAB6531EFD24DB00B48AB4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -133,11 +229,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6997EB301EFD236700029BCC /* HLTaskScheduler.m in Sources */,
 				6997EAE91EFCBFA700029BCC /* HanlyKitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		69BAB6421EFD24DB00B48AB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69BAB66B1EFD255E00B48AB4 /* HLTaskScheduler.h in Sources */,
+				69BAB66C1EFD255E00B48AB4 /* HLTaskScheduler.m in Sources */,
+				69BAB6501EFD24DB00B48AB4 /* ViewController.m in Sources */,
+				69BAB64D1EFD24DB00B48AB4 /* AppDelegate.m in Sources */,
+				69BAB64A1EFD24DB00B48AB4 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		69BAB6511EFD24DB00B48AB4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69BAB6521EFD24DB00B48AB4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		69BAB6561EFD24DB00B48AB4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69BAB6571EFD24DB00B48AB4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6997EAEB1EFCBFA700029BCC /* Debug */ = {
@@ -254,6 +382,28 @@
 			};
 			name = Release;
 		};
+		69BAB6651EFD24DC00B48AB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Example/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.hanly.Example;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		69BAB6661EFD24DC00B48AB4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Example/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.hanly.Example;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -274,6 +424,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		69BAB6691EFD24DC00B48AB4 /* Build configuration list for PBXNativeTarget "Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69BAB6651EFD24DC00B48AB4 /* Debug */,
+				69BAB6661EFD24DC00B48AB4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
