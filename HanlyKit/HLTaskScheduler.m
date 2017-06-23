@@ -23,11 +23,12 @@
 
 NSString * const kHLTaskSchedulerCurrentSchedulerKey = @"HLTaskSchedulerCurrentSchedulerKey";
 
-static CGFloat const kHLTaskExecuteTimeout = 30.0f;
+static CGFloat const kHLTaskExecuteTimeout = 3.0f;
 
 @interface HLTaskScheduler ()
 
 @property (nonatomic, strong) dispatch_queue_t queue;
+//@property (nonatomic, strong) dispatch_queue_t blockQueue;
 @property (nonatomic, strong) dispatch_source_t timer;
 
 @property (nonatomic, copy) NSString *name;
@@ -85,6 +86,7 @@ static CGFloat const kHLTaskExecuteTimeout = 30.0f;
     }
     _name = name ? [name copy] : [NSString stringWithFormat:@"org.hanly.Scheduler(%s)", dispatch_queue_get_label(queue)];
     _queue = queue;
+//    _blockQueue = dispatch_queue_create([NSString stringWithFormat:@"%@.block", _name].UTF8String, DISPATCH_QUEUE_CONCURRENT);
     
     [self startTimer];
     [self registerNotification];
@@ -144,7 +146,7 @@ static CGFloat const kHLTaskExecuteTimeout = 30.0f;
 
 - (void)createTimer {
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue);
-    dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), kHLTaskExecuteTimeout, DISPATCH_TIME_FOREVER);
+    dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), (uint64_t)kHLTaskExecuteTimeout * NSEC_PER_SEC, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
 //    [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
     dispatch_source_set_event_handler(self.timer, ^{
         HLLog(@"%@", self);
