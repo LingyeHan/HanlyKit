@@ -23,7 +23,7 @@
 
 NSString * const kHLTaskSchedulerCurrentSchedulerKey = @"HLTaskSchedulerCurrentSchedulerKey";
 
-static CGFloat const kWMTaskExecuteTimeout = 30.0f;
+static CGFloat const kHLTaskExecuteTimeout = 30.0f;
 
 @interface HLTaskScheduler ()
 
@@ -70,7 +70,6 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
     self = [super init];
     if (self) {
         self.completionBlocks = [NSMutableArray new];
-        [self registerNotification];
     }
     return self;
 }
@@ -78,15 +77,17 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
 - (instancetype)initWithName:(NSString *)name targetQueue:(dispatch_queue_t)targetQueue {
     self = [self init];
     
-    dispatch_queue_t queue = dispatch_queue_create(name.UTF8String, DISPATCH_QUEUE_SERIAL);
+    dispatch_queue_t queue = NULL;
     if (targetQueue) {
-        dispatch_set_target_queue(queue, targetQueue);
+        queue = targetQueue;
+    } else {
+        queue = dispatch_queue_create(name.UTF8String, DISPATCH_QUEUE_SERIAL);
     }
-    _name = name ? [name copy] : [NSString stringWithFormat:@"org.hanly.queue.task.Scheduler(%s)", dispatch_queue_get_label(queue)];
+    _name = name ? [name copy] : [NSString stringWithFormat:@"org.hanly.Scheduler(%s)", dispatch_queue_get_label(queue)];
     _queue = queue;
     
-//    [self startTimer];
-//    [self registerNotification];
+    [self startTimer];
+    [self registerNotification];
     
     return self;
 }
@@ -108,7 +109,7 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
     static dispatch_once_t onceToken;
     static HLTaskScheduler *scheduler;
     dispatch_once(&onceToken, ^{
-        scheduler = [[HLTaskScheduler alloc] initWithName:@"org.hanly.queue.task.Scheduler" targetQueue:NULL];
+        scheduler = [[HLTaskScheduler alloc] initWithName:@"org.hanly.task.Scheduler" targetQueue:NULL];
     });
     return scheduler;
 }
@@ -117,40 +118,43 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
     static dispatch_once_t onceToken;
     static HLTaskScheduler *mainThreadScheduler;
     dispatch_once(&onceToken, ^{
-        mainThreadScheduler = [[HLTaskScheduler alloc] initWithName:@"org.hanly.queue.task.Scheduler.mainThreadScheduler" targetQueue:dispatch_get_main_queue()];
+        mainThreadScheduler = [[HLTaskScheduler alloc] initWithName:@"org.hanly.task.Scheduler.mainThreadScheduler" targetQueue:dispatch_get_main_queue()];
     });
     
     return mainThreadScheduler;
 }
 
-+ (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler {
-    HLTaskScheduler *scheduler = [HLTaskScheduler scheduler];
-    
-    [scheduler addCompletionBlock:completionHandler];
+- (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler {
+    [self addCompletionBlock:completionHandler];
 }
 
 - (void)startTimer {
+    HLLog(@"Start timer.");
+    
+    [self destroyTimer];
+    [self createTimer];
     dispatch_resume(self.timer);
 }
 
 - (void)stopTimer {
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), self.queue, ^{
-        dispatch_suspend(self.timer);
-//    });
+    HLLog(@"Stop timer.");
+
+    [self destroyTimer];
 }
 
 - (void)createTimer {
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue);
-    dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 3.f * NSEC_PER_SEC, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
+    dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), kHLTaskExecuteTimeout, DISPATCH_TIME_FOREVER);
+//    [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
     dispatch_source_set_event_handler(self.timer, ^{
-        NSLog(@"come timer");
+        HLLog(@"%@", self);
+        [self performCurrentScheduler];
     });
-    dispatch_resume(self.timer);
 }
 
 - (void)updateTimer:(NSDate *)date interval:(NSTimeInterval)interval {
-    NSCParameterAssert(date != nil);
-    NSCParameterAssert(interval > 0.0 && interval < INT64_MAX / NSEC_PER_SEC);
+    NSParameterAssert(date != nil);
+    NSParameterAssert(interval > 0.0 && interval < INT64_MAX / NSEC_PER_SEC);
     
     dispatch_time_t startTime = dispatch_time(DISPATCH_TIME_NOW, interval);//[self.class wallTimeWithDate:date];
     uint64_t intervalInNanoSecs = (uint64_t)(interval * NSEC_PER_SEC);
@@ -159,6 +163,7 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
 }
 
 - (void)reset {
+    HLLog(@"Scheduler reset.");
     [self removeCompletionBlocks];
 }
 
@@ -172,7 +177,7 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
     
     __weak typeof(self) wSelf = self;
     for (void (^block)(void) in blocks) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(self.queue, ^{//dispatch_get_main_queue() 在主线程执行会导致切换前后台不执行系统通告
             __strong typeof(wSelf) self = wSelf;
             [self performBlock:block];
         });
@@ -181,8 +186,8 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
 }
 
 - (void)performBlock:(void (^)(void))block {
-    NSCParameterAssert(block != NULL);
-    
+    NSParameterAssert(block != NULL);
+
 //    HLTaskScheduler *previousScheduler = [HLTaskScheduler currentScheduler];
 //    NSThread.currentThread.threadDictionary[kHLTaskSchedulerCurrentSchedulerKey] = self;
     
@@ -198,6 +203,8 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
 }
 
 - (void)addCompletionBlock:(void (^)(void))block {
+    NSParameterAssert(block != nil);
+    
     @synchronized (self) {
         [self.completionBlocks addObject:[block copy]];
     }
@@ -209,23 +216,24 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
     }
 }
 
-- (dispatch_source_t)timer {
-    if (!_timer) {
-        
-        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue);
-        if (_timer != NULL) {
-            dispatch_source_set_event_handler(_timer, ^{
-                [self performCurrentScheduler];
-            });
-            
-            [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
-        }
-    }
-    return _timer;
-}
+//- (dispatch_source_t)timer {
+//    if (!_timer) {
+//        
+//        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue);
+//        if (_timer != NULL) {
+//            dispatch_source_set_event_handler(_timer, ^{
+//                [self performCurrentScheduler];
+//            });
+//            
+//            [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
+//        }
+//    }
+//    return _timer;
+//}
 
 #pragma mark - Class Methods
 
+/*
 + (dispatch_time_t)wallTimeWithDate:(NSDate *)date {
     NSCParameterAssert(date != nil);
     
@@ -251,5 +259,5 @@ static CGFloat const kWMTaskExecuteTimeout = 30.0f;
     
     return nil;
 }
-
+*/
 @end

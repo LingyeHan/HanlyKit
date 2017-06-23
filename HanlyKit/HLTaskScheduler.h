@@ -16,6 +16,10 @@ typedef NS_ENUM(NSUInteger, WMTaskSchedulerFetchResult) {
 
 @interface HLTaskScheduler : NSObject
 
-+ (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler;
++ (instancetype)scheduler;
+
++ (instancetype)mainThreadScheduler;
+
+- (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler;
 
 @end

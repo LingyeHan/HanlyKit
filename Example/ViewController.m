@@ -18,17 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [HLTaskScheduler registerTaskWithCompletionHandler:^{
+    [[HLTaskScheduler scheduler] registerTaskWithCompletionHandler:^{
         sleep(2);
         NSLog(@"2currentThread: %@", [NSThread currentThread]);
     }];
     
-    [HLTaskScheduler registerTaskWithCompletionHandler:^{
+    [[HLTaskScheduler mainThreadScheduler] registerTaskWithCompletionHandler:^{
         sleep(5);
         NSLog(@"5currentThread: %@", [NSThread currentThread]);
     }];
     
-    [HLTaskScheduler registerTaskWithCompletionHandler:^{
+    [[HLTaskScheduler scheduler] registerTaskWithCompletionHandler:^{
         sleep(3);
         NSLog(@"3currentThread: %@", [NSThread currentThread]);
     }];
