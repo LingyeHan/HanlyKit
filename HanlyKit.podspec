@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   # s.osx.deployment_target = '10.9'
   s.requires_arc = true
 
-  s.source_files = 'HanlyKit/HanlyKit/*'
+  s.source_files = 'HanlyKit/*'
   # s.resources = 'Assets'
 
   # s.ios.exclude_files = 'Classes/osx'
