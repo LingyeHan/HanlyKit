@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   # s.ios.deployment_target = '8.0'
   # s.osx.deployment_target = '10.9'
-  # s.requires_arc = true
+  s.requires_arc = true
   s.public_header_files = 'HanlyKit/HanlyKit.h'
-  s.source_files = 'HanlyKit/*.{h,m}'
+  s.source_files = 'HanlyKit/*'
   # s.resources = 'Assets'
 
   # s.ios.exclude_files = 'Classes/osx'
