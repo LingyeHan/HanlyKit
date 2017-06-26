@@ -9,17 +9,7 @@
 #import "HLTaskScheduler.h"
 #import <UIKit/UIKit.h>
 
-//#ifndef HL_ENABLE_LOGGING
-//#ifdef DEBUG
-//#define HL_ENABLE_LOGGING 1
-//#else
-//#define HL_ENABLE_LOGGING 0
-//#endif
-//#endif
-//
-//#if HL_ENABLE_LOGGING != 0
-//#define HLLog(...) NSLog(@"%s(%p) %@", __PRETTY_FUNCTION__, self, [NSString stringWithFormat:__VA_ARGS__])
-//#endif
+
 
 NSString * const kHLTaskSchedulerCurrentSchedulerKey = @"HLTaskSchedulerCurrentSchedulerKey";
 
