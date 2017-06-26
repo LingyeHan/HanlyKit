@@ -9,17 +9,17 @@
 #import "HLTaskScheduler.h"
 #import <UIKit/UIKit.h>
 
-#ifndef HL_ENABLE_LOGGING
-#ifdef DEBUG
-#define HL_ENABLE_LOGGING 1
-#else
-#define HL_ENABLE_LOGGING 0
-#endif
-#endif
-
-#if HL_ENABLE_LOGGING != 0
-#define HLLog(...) NSLog(@"%s(%p) %@", __PRETTY_FUNCTION__, self, [NSString stringWithFormat:__VA_ARGS__])
-#endif
+//#ifndef HL_ENABLE_LOGGING
+//#ifdef DEBUG
+//#define HL_ENABLE_LOGGING 1
+//#else
+//#define HL_ENABLE_LOGGING 0
+//#endif
+//#endif
+//
+//#if HL_ENABLE_LOGGING != 0
+//#define HLLog(...) NSLog(@"%s(%p) %@", __PRETTY_FUNCTION__, self, [NSString stringWithFormat:__VA_ARGS__])
+//#endif
 
 NSString * const kHLTaskSchedulerCurrentSchedulerKey = @"HLTaskSchedulerCurrentSchedulerKey";
 
@@ -131,7 +131,7 @@ static CGFloat const kHLTaskExecuteTimeout = 3.0f;
 }
 
 - (void)startTimer {
-    HLLog(@"Start timer.");
+    NSLog(@"Start timer.");
     
     [self destroyTimer];
     [self createTimer];
@@ -139,7 +139,7 @@ static CGFloat const kHLTaskExecuteTimeout = 3.0f;
 }
 
 - (void)stopTimer {
-    HLLog(@"Stop timer.");
+    NSLog(@"Stop timer.");
 
     [self destroyTimer];
 }
@@ -149,7 +149,7 @@ static CGFloat const kHLTaskExecuteTimeout = 3.0f;
     dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), (uint64_t)kHLTaskExecuteTimeout * NSEC_PER_SEC, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
 //    [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
     dispatch_source_set_event_handler(self.timer, ^{
-        HLLog(@"%@", self);
+        NSLog(@"%@", self);
         [self performCurrentScheduler];
     });
 }
@@ -165,7 +165,7 @@ static CGFloat const kHLTaskExecuteTimeout = 3.0f;
 }
 
 - (void)reset {
-    HLLog(@"Scheduler reset.");
+    NSLog(@"Scheduler reset.");
     [self removeCompletionBlocks];
 }
 
