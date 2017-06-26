@@ -145,7 +145,7 @@ static CGFloat const kHLTaskExecuteTimeout = 3.0f;
 }
 
 - (void)createTimer {
-    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue);
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), (uint64_t)kHLTaskExecuteTimeout * NSEC_PER_SEC, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
 //    [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
     dispatch_source_set_event_handler(self.timer, ^{
@@ -158,8 +158,8 @@ static CGFloat const kHLTaskExecuteTimeout = 3.0f;
     NSParameterAssert(date != nil);
     NSParameterAssert(interval > 0.0 && interval < INT64_MAX / NSEC_PER_SEC);
     
-    dispatch_time_t startTime = dispatch_time(DISPATCH_TIME_NOW, interval);//[self.class wallTimeWithDate:date];
-    uint64_t intervalInNanoSecs = (uint64_t)(interval * NSEC_PER_SEC);
+    dispatch_time_t startTime = dispatch_time(DISPATCH_TIME_NOW, kHLTaskExecuteTimeout);//[self.class wallTimeWithDate:date];
+    uint64_t intervalInNanoSecs = (uint64_t)(kHLTaskExecuteTimeout * NSEC_PER_SEC);
     
     dispatch_source_set_timer(self.timer, startTime, intervalInNanoSecs, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
 }
