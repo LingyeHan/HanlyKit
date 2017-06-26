@@ -1,0 +1,25 @@
+# HanlyKit
+
+
+## Example
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
+## Installation
+
+WMAccount is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "HanlyKit"
+```
+
+## Author
+
+HanLingye
+
+## License
+
+WMAccount is available under the MIT license. See the LICENSE file for more info.

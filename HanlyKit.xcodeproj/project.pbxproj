@@ -7,24 +7,68 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6997EAE91EFCBFA700029BCC /* HanlyKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997EAE81EFCBFA700029BCC /* HanlyKitTests.m */; };
-		6997EB301EFD236700029BCC /* HLTaskScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997EB2F1EFD236700029BCC /* HLTaskScheduler.m */; };
+		693D4DD01F0118F300F6901D /* HanlyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; };
+		693D4DD71F0118F300F6901D /* HanlyKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D4DD61F0118F300F6901D /* HanlyKitTests.m */; };
+		693D4DD91F0118F300F6901D /* HanlyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 693D4DC91F0118F300F6901D /* HanlyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		693D4DDC1F0118F300F6901D /* HanlyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; };
+		693D4DDD1F0118F300F6901D /* HanlyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		693D4DE61F01191300F6901D /* HLTaskScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = 693D4DE41F01191300F6901D /* HLTaskScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		693D4DE71F01191300F6901D /* HLTaskScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D4DE51F01191300F6901D /* HLTaskScheduler.m */; };
 		69BAB64A1EFD24DB00B48AB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB6491EFD24DB00B48AB4 /* main.m */; };
 		69BAB64D1EFD24DB00B48AB4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB64C1EFD24DB00B48AB4 /* AppDelegate.m */; };
 		69BAB6501EFD24DB00B48AB4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB64F1EFD24DB00B48AB4 /* ViewController.m */; };
 		69BAB6531EFD24DB00B48AB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69BAB6511EFD24DB00B48AB4 /* Main.storyboard */; };
 		69BAB6551EFD24DB00B48AB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69BAB6541EFD24DB00B48AB4 /* Assets.xcassets */; };
 		69BAB6581EFD24DB00B48AB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69BAB6561EFD24DB00B48AB4 /* LaunchScreen.storyboard */; };
-		69BAB66B1EFD255E00B48AB4 /* HLTaskScheduler.h in Sources */ = {isa = PBXBuildFile; fileRef = 6997EB2E1EFD236700029BCC /* HLTaskScheduler.h */; };
-		69BAB66C1EFD255E00B48AB4 /* HLTaskScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6997EB2F1EFD236700029BCC /* HLTaskScheduler.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		693D4DD11F0118F300F6901D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6997EAC31EFCBFA700029BCC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 693D4DC61F0118F300F6901D;
+			remoteInfo = HanlyKit;
+		};
+		693D4DD31F0118F300F6901D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6997EAC31EFCBFA700029BCC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 69BAB6451EFD24DB00B48AB4;
+			remoteInfo = Example;
+		};
+		693D4DDA1F0118F300F6901D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6997EAC31EFCBFA700029BCC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 693D4DC61F0118F300F6901D;
+			remoteInfo = HanlyKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		693D4DB61F01181900F6901D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				693D4DDD1F0118F300F6901D /* HanlyKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		6997EAE41EFCBFA700029BCC /* HanlyKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HanlyKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6997EAE81EFCBFA700029BCC /* HanlyKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HanlyKitTests.m; sourceTree = "<group>"; };
-		6997EAEA1EFCBFA700029BCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6997EB2E1EFD236700029BCC /* HLTaskScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTaskScheduler.h; sourceTree = "<group>"; };
-		6997EB2F1EFD236700029BCC /* HLTaskScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTaskScheduler.m; sourceTree = "<group>"; };
+		693D4DC71F0118F300F6901D /* HanlyKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HanlyKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		693D4DC91F0118F300F6901D /* HanlyKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HanlyKit.h; sourceTree = "<group>"; };
+		693D4DCA1F0118F300F6901D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		693D4DCF1F0118F300F6901D /* HanlyKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HanlyKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		693D4DD61F0118F300F6901D /* HanlyKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HanlyKitTests.m; sourceTree = "<group>"; };
+		693D4DD81F0118F300F6901D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		693D4DE41F01191300F6901D /* HLTaskScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTaskScheduler.h; sourceTree = "<group>"; };
+		693D4DE51F01191300F6901D /* HLTaskScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTaskScheduler.m; sourceTree = "<group>"; };
 		69BAB6461EFD24DB00B48AB4 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69BAB6491EFD24DB00B48AB4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		69BAB64B1EFD24DB00B48AB4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -35,15 +79,21 @@
 		69BAB6541EFD24DB00B48AB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		69BAB6571EFD24DB00B48AB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		69BAB6591EFD24DB00B48AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		69BAB6621EFD24DC00B48AB4 /* ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleTests.m; sourceTree = "<group>"; };
-		69BAB6641EFD24DC00B48AB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6997EAE11EFCBFA700029BCC /* Frameworks */ = {
+		693D4DC31F0118F300F6901D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		693D4DCC1F0118F300F6901D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				693D4DD01F0118F300F6901D /* HanlyKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,19 +101,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				693D4DDC1F0118F300F6901D /* HanlyKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		693D4DC81F0118F300F6901D /* HanlyKit */ = {
+			isa = PBXGroup;
+			children = (
+				693D4DE41F01191300F6901D /* HLTaskScheduler.h */,
+				693D4DE51F01191300F6901D /* HLTaskScheduler.m */,
+				693D4DC91F0118F300F6901D /* HanlyKit.h */,
+				693D4DCA1F0118F300F6901D /* Info.plist */,
+			);
+			path = HanlyKit;
+			sourceTree = "<group>";
+		};
+		693D4DD51F0118F300F6901D /* HanlyKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				693D4DD61F0118F300F6901D /* HanlyKitTests.m */,
+				693D4DD81F0118F300F6901D /* Info.plist */,
+			);
+			path = HanlyKitTests;
+			sourceTree = "<group>";
+		};
 		6997EAC21EFCBFA700029BCC = {
 			isa = PBXGroup;
 			children = (
-				6997EACD1EFCBFA700029BCC /* HanlyKit */,
-				6997EAE71EFCBFA700029BCC /* HanlyKitTests */,
 				69BAB6471EFD24DB00B48AB4 /* Example */,
-				69BAB6611EFD24DC00B48AB4 /* ExampleTests */,
+				693D4DC81F0118F300F6901D /* HanlyKit */,
+				693D4DD51F0118F300F6901D /* HanlyKitTests */,
 				6997EACC1EFCBFA700029BCC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,28 +141,11 @@
 		6997EACC1EFCBFA700029BCC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6997EAE41EFCBFA700029BCC /* HanlyKitTests.xctest */,
 				69BAB6461EFD24DB00B48AB4 /* Example.app */,
+				693D4DC71F0118F300F6901D /* HanlyKit.framework */,
+				693D4DCF1F0118F300F6901D /* HanlyKitTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		6997EACD1EFCBFA700029BCC /* HanlyKit */ = {
-			isa = PBXGroup;
-			children = (
-				6997EB2E1EFD236700029BCC /* HLTaskScheduler.h */,
-				6997EB2F1EFD236700029BCC /* HLTaskScheduler.m */,
-			);
-			path = HanlyKit;
-			sourceTree = "<group>";
-		};
-		6997EAE71EFCBFA700029BCC /* HanlyKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				6997EAE81EFCBFA700029BCC /* HanlyKitTests.m */,
-				6997EAEA1EFCBFA700029BCC /* Info.plist */,
-			);
-			path = HanlyKitTests;
 			sourceTree = "<group>";
 		};
 		69BAB6471EFD24DB00B48AB4 /* Example */ = {
@@ -119,33 +172,56 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		69BAB6611EFD24DC00B48AB4 /* ExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				69BAB6621EFD24DC00B48AB4 /* ExampleTests.m */,
-				69BAB6641EFD24DC00B48AB4 /* Info.plist */,
-			);
-			path = ExampleTests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		693D4DC41F0118F300F6901D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				693D4DD91F0118F300F6901D /* HanlyKit.h in Headers */,
+				693D4DE61F01191300F6901D /* HLTaskScheduler.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		6997EAE31EFCBFA700029BCC /* HanlyKitTests */ = {
+		693D4DC61F0118F300F6901D /* HanlyKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6997EAF01EFCBFA700029BCC /* Build configuration list for PBXNativeTarget "HanlyKitTests" */;
+			buildConfigurationList = 693D4DDE1F0118F300F6901D /* Build configuration list for PBXNativeTarget "HanlyKit" */;
 			buildPhases = (
-				6997EAE01EFCBFA700029BCC /* Sources */,
-				6997EAE11EFCBFA700029BCC /* Frameworks */,
-				6997EAE21EFCBFA700029BCC /* Resources */,
+				693D4DC21F0118F300F6901D /* Sources */,
+				693D4DC31F0118F300F6901D /* Frameworks */,
+				693D4DC41F0118F300F6901D /* Headers */,
+				693D4DC51F0118F300F6901D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			name = HanlyKit;
+			productName = HanlyKit;
+			productReference = 693D4DC71F0118F300F6901D /* HanlyKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		693D4DCE1F0118F300F6901D /* HanlyKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 693D4DE11F0118F300F6901D /* Build configuration list for PBXNativeTarget "HanlyKitTests" */;
+			buildPhases = (
+				693D4DCB1F0118F300F6901D /* Sources */,
+				693D4DCC1F0118F300F6901D /* Frameworks */,
+				693D4DCD1F0118F300F6901D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				693D4DD21F0118F300F6901D /* PBXTargetDependency */,
+				693D4DD41F0118F300F6901D /* PBXTargetDependency */,
+			);
 			name = HanlyKitTests;
 			productName = HanlyKitTests;
-			productReference = 6997EAE41EFCBFA700029BCC /* HanlyKitTests.xctest */;
+			productReference = 693D4DCF1F0118F300F6901D /* HanlyKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		69BAB6451EFD24DB00B48AB4 /* Example */ = {
@@ -155,10 +231,12 @@
 				69BAB6421EFD24DB00B48AB4 /* Sources */,
 				69BAB6431EFD24DB00B48AB4 /* Frameworks */,
 				69BAB6441EFD24DB00B48AB4 /* Resources */,
+				693D4DB61F01181900F6901D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				693D4DDB1F0118F300F6901D /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -174,10 +252,14 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Hanlingye;
 				TargetAttributes = {
-					6997EAE31EFCBFA700029BCC = {
-						CreatedOnToolsVersion = 8.3.2;
+					693D4DC61F0118F300F6901D = {
+						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 6997EACA1EFCBFA700029BCC;
+					};
+					693D4DCE1F0118F300F6901D = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 69BAB6451EFD24DB00B48AB4;
 					};
 					69BAB6451EFD24DB00B48AB4 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -198,14 +280,22 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6997EAE31EFCBFA700029BCC /* HanlyKitTests */,
 				69BAB6451EFD24DB00B48AB4 /* Example */,
+				693D4DC61F0118F300F6901D /* HanlyKit */,
+				693D4DCE1F0118F300F6901D /* HanlyKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6997EAE21EFCBFA700029BCC /* Resources */ = {
+		693D4DC51F0118F300F6901D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		693D4DCD1F0118F300F6901D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -225,12 +315,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6997EAE01EFCBFA700029BCC /* Sources */ = {
+		693D4DC21F0118F300F6901D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6997EB301EFD236700029BCC /* HLTaskScheduler.m in Sources */,
-				6997EAE91EFCBFA700029BCC /* HanlyKitTests.m in Sources */,
+				693D4DE71F01191300F6901D /* HLTaskScheduler.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		693D4DCB1F0118F300F6901D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				693D4DD71F0118F300F6901D /* HanlyKitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,8 +335,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69BAB66B1EFD255E00B48AB4 /* HLTaskScheduler.h in Sources */,
-				69BAB66C1EFD255E00B48AB4 /* HLTaskScheduler.m in Sources */,
 				69BAB6501EFD24DB00B48AB4 /* ViewController.m in Sources */,
 				69BAB64D1EFD24DB00B48AB4 /* AppDelegate.m in Sources */,
 				69BAB64A1EFD24DB00B48AB4 /* main.m in Sources */,
@@ -247,6 +342,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		693D4DD21F0118F300F6901D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 693D4DC61F0118F300F6901D /* HanlyKit */;
+			targetProxy = 693D4DD11F0118F300F6901D /* PBXContainerItemProxy */;
+		};
+		693D4DD41F0118F300F6901D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 69BAB6451EFD24DB00B48AB4 /* Example */;
+			targetProxy = 693D4DD31F0118F300F6901D /* PBXContainerItemProxy */;
+		};
+		693D4DDB1F0118F300F6901D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 693D4DC61F0118F300F6901D /* HanlyKit */;
+			targetProxy = 693D4DDA1F0118F300F6901D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		69BAB6511EFD24DB00B48AB4 /* Main.storyboard */ = {
@@ -268,6 +381,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		693D4DDF1F0118F300F6901D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HanlyKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.hanly.HanlyKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		693D4DE01F0118F300F6901D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = HanlyKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.hanly.HanlyKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		693D4DE21F0118F300F6901D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = HanlyKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.hanly.HanlyKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
+			};
+			name = Debug;
+		};
+		693D4DE31F0118F300F6901D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = HanlyKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = org.hanly.HanlyKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
+			};
+			name = Release;
+		};
 		6997EAEB1EFCBFA700029BCC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -358,30 +535,6 @@
 			};
 			name = Release;
 		};
-		6997EAF11EFCBFA700029BCC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = HanlyKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = HanlyKit.HanlyKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HanlyKit.app/HanlyKit";
-			};
-			name = Debug;
-		};
-		6997EAF21EFCBFA700029BCC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = HanlyKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = HanlyKit.HanlyKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HanlyKit.app/HanlyKit";
-			};
-			name = Release;
-		};
 		69BAB6651EFD24DC00B48AB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -407,20 +560,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		693D4DDE1F0118F300F6901D /* Build configuration list for PBXNativeTarget "HanlyKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				693D4DDF1F0118F300F6901D /* Debug */,
+				693D4DE01F0118F300F6901D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		693D4DE11F0118F300F6901D /* Build configuration list for PBXNativeTarget "HanlyKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				693D4DE21F0118F300F6901D /* Debug */,
+				693D4DE31F0118F300F6901D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6997EAC61EFCBFA700029BCC /* Build configuration list for PBXProject "HanlyKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6997EAEB1EFCBFA700029BCC /* Debug */,
 				6997EAEC1EFCBFA700029BCC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6997EAF01EFCBFA700029BCC /* Build configuration list for PBXNativeTarget "HanlyKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6997EAF11EFCBFA700029BCC /* Debug */,
-				6997EAF21EFCBFA700029BCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -432,6 +594,7 @@
 				69BAB6661EFD24DC00B48AB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
