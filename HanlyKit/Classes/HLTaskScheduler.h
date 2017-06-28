@@ -8,12 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, WMTaskSchedulerFetchResult) {
-    WMTaskSchedulerFetchResultNewData,
-    WMTaskSchedulerFetchResultNoData,
-    WMTaskSchedulerFetchResultFailed
-};
-
 @interface HLTaskScheduler : NSObject
 
 + (instancetype)scheduler;
@@ -21,5 +15,11 @@ typedef NS_ENUM(NSUInteger, WMTaskSchedulerFetchResult) {
 + (instancetype)mainThreadScheduler;
 
 - (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler;
+
+- (void)start;
+
+- (void)stop;
+
+- (void)reset;
 
 @end

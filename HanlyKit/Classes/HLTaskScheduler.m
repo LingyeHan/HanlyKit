@@ -9,11 +9,25 @@
 #import "HLTaskScheduler.h"
 #import <UIKit/UIKit.h>
 
+#ifndef HL_ENABLE_LOGGING
+#ifdef DEBUG
+#define HL_ENABLE_LOGGING 1
+#else
+#define HL_ENABLE_LOGGING 0
+#endif
+#endif
 
+#if HL_ENABLE_LOGGING != 0
+#define HLLog(...) NSLog(@"%s(%p) %@", __PRETTY_FUNCTION__, self, [NSString stringWithFormat:__VA_ARGS__])
+#endif
 
 NSString * const kHLTaskSchedulerCurrentSchedulerKey = @"HLTaskSchedulerCurrentSchedulerKey";
 
-static CGFloat const kHLTaskExecuteTimeout = 3.0f;
+#ifdef DEBUG
+static CGFloat const kHLTaskSchedulerIntervalTime = 15.0f;
+#else
+static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
+#endif
 
 @interface HLTaskScheduler ()
 
@@ -72,13 +86,13 @@ static CGFloat const kHLTaskExecuteTimeout = 3.0f;
     if (targetQueue) {
         queue = targetQueue;
     } else {
-        queue = dispatch_queue_create(name.UTF8String, DISPATCH_QUEUE_SERIAL);
+        queue = dispatch_queue_create(name.UTF8String, DISPATCH_QUEUE_CONCURRENT);
     }
     _name = name ? [name copy] : [NSString stringWithFormat:@"org.hanly.Scheduler(%s)", dispatch_queue_get_label(queue)];
     _queue = queue;
 //    _blockQueue = dispatch_queue_create([NSString stringWithFormat:@"%@.block", _name].UTF8String, DISPATCH_QUEUE_CONCURRENT);
     
-    [self startTimer];
+    [self start];
     [self registerNotification];
     
     return self;
@@ -86,11 +100,11 @@ static CGFloat const kHLTaskExecuteTimeout = 3.0f;
 
 - (void)registerNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(startTimer)
+                                             selector:@selector(start)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(stopTimer)
+                                             selector:@selector(stop)
                                                  name:UIApplicationDidEnterBackgroundNotification
                                                object:nil];
 }
@@ -120,46 +134,47 @@ static CGFloat const kHLTaskExecuteTimeout = 3.0f;
     [self addCompletionBlock:completionHandler];
 }
 
-- (void)startTimer {
-    NSLog(@"Start timer.");
+- (void)start {
+    NSLog(@"Task Scheduler Started");
     
     [self destroyTimer];
     [self createTimer];
     dispatch_resume(self.timer);
 }
 
-- (void)stopTimer {
-    NSLog(@"Stop timer.");
+- (void)stop {
+    NSLog(@"Task Scheduler Stop");
 
     [self destroyTimer];
 }
 
-- (void)createTimer {
-    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
-    dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), (uint64_t)kHLTaskExecuteTimeout * NSEC_PER_SEC, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
-//    [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
-    dispatch_source_set_event_handler(self.timer, ^{
-        NSLog(@"%@", self);
-        [self performCurrentScheduler];
-    });
-}
-
-- (void)updateTimer:(NSDate *)date interval:(NSTimeInterval)interval {
-    NSParameterAssert(date != nil);
-    NSParameterAssert(interval > 0.0 && interval < INT64_MAX / NSEC_PER_SEC);
-    
-    dispatch_time_t startTime = dispatch_time(DISPATCH_TIME_NOW, kHLTaskExecuteTimeout);//[self.class wallTimeWithDate:date];
-    uint64_t intervalInNanoSecs = (uint64_t)(kHLTaskExecuteTimeout * NSEC_PER_SEC);
-    
-    dispatch_source_set_timer(self.timer, startTime, intervalInNanoSecs, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
-}
-
 - (void)reset {
-    NSLog(@"Scheduler reset.");
+    NSLog(@"Task Scheduler Reset");
+    
     [self removeCompletionBlocks];
 }
 
 #pragma mark - Private Methods
+
+- (void)createTimer {
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+    dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), (uint64_t)kHLTaskSchedulerIntervalTime * NSEC_PER_SEC, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
+//    [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
+    dispatch_source_set_event_handler(self.timer, ^{
+        HLLog(@"%@", self);
+        [self performCurrentScheduler];
+    });
+}
+
+//- (void)updateTimer:(NSDate *)date interval:(NSTimeInterval)interval {
+//    NSParameterAssert(date != nil);
+//    NSParameterAssert(interval > 0.0 && interval < INT64_MAX / NSEC_PER_SEC);
+//    
+//    dispatch_time_t startTime = dispatch_time(DISPATCH_TIME_NOW, kHLTaskSchedulerIntervalTime);//[self.class wallTimeWithDate:date];
+//    uint64_t intervalInNanoSecs = (uint64_t)(kHLTaskSchedulerIntervalTime * NSEC_PER_SEC);
+//    
+//    dispatch_source_set_timer(self.timer, startTime, intervalInNanoSecs, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
+//}
 
 - (void)performCurrentScheduler {
     NSArray *blocks = nil;

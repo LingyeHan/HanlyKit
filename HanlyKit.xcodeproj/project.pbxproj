@@ -10,10 +10,10 @@
 		693D4DD01F0118F300F6901D /* HanlyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; };
 		693D4DD71F0118F300F6901D /* HanlyKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D4DD61F0118F300F6901D /* HanlyKitTests.m */; };
 		693D4DD91F0118F300F6901D /* HanlyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 693D4DC91F0118F300F6901D /* HanlyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		693D4DDC1F0118F300F6901D /* HanlyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; };
-		693D4DDD1F0118F300F6901D /* HanlyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		693D4DE61F01191300F6901D /* HLTaskScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = 693D4DE41F01191300F6901D /* HLTaskScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		693D4DE71F01191300F6901D /* HLTaskScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D4DE51F01191300F6901D /* HLTaskScheduler.m */; };
+		693D4DED1F01F7CB00F6901D /* HanlyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; };
+		693D4DEE1F01F7CB00F6901D /* HanlyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		693D4DF51F03603200F6901D /* HLTaskScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = 693D4DF31F03603200F6901D /* HLTaskScheduler.h */; };
+		693D4DF61F03603200F6901D /* HLTaskScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D4DF41F03603200F6901D /* HLTaskScheduler.m */; };
 		69BAB64A1EFD24DB00B48AB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB6491EFD24DB00B48AB4 /* main.m */; };
 		69BAB64D1EFD24DB00B48AB4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB64C1EFD24DB00B48AB4 /* AppDelegate.m */; };
 		69BAB6501EFD24DB00B48AB4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB64F1EFD24DB00B48AB4 /* ViewController.m */; };
@@ -37,7 +37,7 @@
 			remoteGlobalIDString = 69BAB6451EFD24DB00B48AB4;
 			remoteInfo = Example;
 		};
-		693D4DDA1F0118F300F6901D /* PBXContainerItemProxy */ = {
+		693D4DEF1F01F7CB00F6901D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6997EAC31EFCBFA700029BCC /* Project object */;
 			proxyType = 1;
@@ -47,13 +47,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		693D4DB61F01181900F6901D /* Embed Frameworks */ = {
+		693D4DF11F01F7CB00F6901D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				693D4DDD1F0118F300F6901D /* HanlyKit.framework in Embed Frameworks */,
+				693D4DEE1F01F7CB00F6901D /* HanlyKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,8 +67,8 @@
 		693D4DCF1F0118F300F6901D /* HanlyKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HanlyKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		693D4DD61F0118F300F6901D /* HanlyKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HanlyKitTests.m; sourceTree = "<group>"; };
 		693D4DD81F0118F300F6901D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		693D4DE41F01191300F6901D /* HLTaskScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTaskScheduler.h; sourceTree = "<group>"; };
-		693D4DE51F01191300F6901D /* HLTaskScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTaskScheduler.m; sourceTree = "<group>"; };
+		693D4DF31F03603200F6901D /* HLTaskScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLTaskScheduler.h; sourceTree = "<group>"; };
+		693D4DF41F03603200F6901D /* HLTaskScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLTaskScheduler.m; sourceTree = "<group>"; };
 		69BAB6461EFD24DB00B48AB4 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69BAB6491EFD24DB00B48AB4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		69BAB64B1EFD24DB00B48AB4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				693D4DDC1F0118F300F6901D /* HanlyKit.framework in Frameworks */,
+				693D4DED1F01F7CB00F6901D /* HanlyKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,8 +111,7 @@
 		693D4DC81F0118F300F6901D /* HanlyKit */ = {
 			isa = PBXGroup;
 			children = (
-				693D4DE41F01191300F6901D /* HLTaskScheduler.h */,
-				693D4DE51F01191300F6901D /* HLTaskScheduler.m */,
+				693D4DF21F035FFF00F6901D /* Classes */,
 				693D4DC91F0118F300F6901D /* HanlyKit.h */,
 				693D4DCA1F0118F300F6901D /* Info.plist */,
 			);
@@ -126,6 +125,15 @@
 				693D4DD81F0118F300F6901D /* Info.plist */,
 			);
 			path = HanlyKitTests;
+			sourceTree = "<group>";
+		};
+		693D4DF21F035FFF00F6901D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				693D4DF31F03603200F6901D /* HLTaskScheduler.h */,
+				693D4DF41F03603200F6901D /* HLTaskScheduler.m */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		6997EAC21EFCBFA700029BCC = {
@@ -180,7 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				693D4DD91F0118F300F6901D /* HanlyKit.h in Headers */,
-				693D4DE61F01191300F6901D /* HLTaskScheduler.h in Headers */,
+				693D4DF51F03603200F6901D /* HLTaskScheduler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,12 +239,12 @@
 				69BAB6421EFD24DB00B48AB4 /* Sources */,
 				69BAB6431EFD24DB00B48AB4 /* Frameworks */,
 				69BAB6441EFD24DB00B48AB4 /* Resources */,
-				693D4DB61F01181900F6901D /* Embed Frameworks */,
+				693D4DF11F01F7CB00F6901D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				693D4DDB1F0118F300F6901D /* PBXTargetDependency */,
+				693D4DF01F01F7CB00F6901D /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -319,7 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				693D4DE71F01191300F6901D /* HLTaskScheduler.m in Sources */,
+				693D4DF61F03603200F6901D /* HLTaskScheduler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,10 +362,10 @@
 			target = 69BAB6451EFD24DB00B48AB4 /* Example */;
 			targetProxy = 693D4DD31F0118F300F6901D /* PBXContainerItemProxy */;
 		};
-		693D4DDB1F0118F300F6901D /* PBXTargetDependency */ = {
+		693D4DF01F01F7CB00F6901D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 693D4DC61F0118F300F6901D /* HanlyKit */;
-			targetProxy = 693D4DDA1F0118F300F6901D /* PBXContainerItemProxy */;
+			targetProxy = 693D4DEF1F01F7CB00F6901D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
