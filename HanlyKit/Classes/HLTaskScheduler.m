@@ -18,7 +18,10 @@
 #endif
 
 #if HL_ENABLE_LOGGING != 0
-#define HLLog(...) NSLog(@"%s(%p) %@", __PRETTY_FUNCTION__, self, [NSString stringWithFormat:__VA_ARGS__])
+#define HLLogV(...) NSLog(@"%s(%p) %@", __PRETTY_FUNCTION__, self, [NSString stringWithFormat:__VA_ARGS__])
+#define HLLogD(...) NSLog(__VA_ARGS__)
+#else
+#define HLLogD(...)
 #endif
 
 NSString * const kHLTaskSchedulerCurrentSchedulerKey = @"HLTaskSchedulerCurrentSchedulerKey";
@@ -161,7 +164,7 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
     dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), (uint64_t)kHLTaskSchedulerIntervalTime * NSEC_PER_SEC, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
 //    [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
     dispatch_source_set_event_handler(self.timer, ^{
-        HLLog(@"%@", self);
+        HLLogD(@"%@", self);
         [self performCurrentScheduler];
     });
 }

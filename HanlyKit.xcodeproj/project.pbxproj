@@ -12,7 +12,7 @@
 		693D4DD91F0118F300F6901D /* HanlyKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 693D4DC91F0118F300F6901D /* HanlyKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		693D4DED1F01F7CB00F6901D /* HanlyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; };
 		693D4DEE1F01F7CB00F6901D /* HanlyKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 693D4DC71F0118F300F6901D /* HanlyKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		693D4DF51F03603200F6901D /* HLTaskScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = 693D4DF31F03603200F6901D /* HLTaskScheduler.h */; };
+		693D4DF51F03603200F6901D /* HLTaskScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = 693D4DF31F03603200F6901D /* HLTaskScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		693D4DF61F03603200F6901D /* HLTaskScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 693D4DF41F03603200F6901D /* HLTaskScheduler.m */; };
 		69BAB64A1EFD24DB00B48AB4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB6491EFD24DB00B48AB4 /* main.m */; };
 		69BAB64D1EFD24DB00B48AB4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BAB64C1EFD24DB00B48AB4 /* AppDelegate.m */; };
