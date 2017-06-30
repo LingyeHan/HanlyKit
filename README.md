@@ -9,7 +9,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-WMAccount is available through [CocoaPods](http://cocoapods.org). To install
+HanlyKit is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
@@ -22,4 +22,4 @@ HanLingye
 
 ## License
 
-WMAccount is available under the MIT license. See the LICENSE file for more info.
+HanlyKit is available under the MIT license. See the LICENSE file for more info.

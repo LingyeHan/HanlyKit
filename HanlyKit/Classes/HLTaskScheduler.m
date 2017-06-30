@@ -32,14 +32,64 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 15.0f;
 static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
 #endif
 
+@interface HLTask : NSObject <NSCopying>
+
+@property(nonatomic, copy) NSString *identifier;
+@property(nonatomic, copy) void (^completionBlock)();
+@property(nonatomic, getter=isEnabled) BOOL enabled;
+
+- (instancetype)initWithCompletionBlock:(void (^)(void))completionBlock identifier:(NSString *)identifier;
+
+@end
+
+@implementation HLTask
+
+- (instancetype)initWithCompletionBlock:(void (^)(void))completionBlock identifier:(NSString *)identifier {
+    self = [super init];
+    if (self) {
+        self.identifier = [identifier copy];
+        self.completionBlock = [completionBlock copy];
+    }
+    return self;
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    id copy = [[[self class] alloc] init];
+    if (copy) {
+        [copy setIdentifier:[self.identifier copyWithZone:zone]];
+        [copy setEnabled:self.isEnabled];
+    }
+    
+    return copy;
+}
+
+- (BOOL)isEqual:(id)object {
+    if (object == self) return YES;
+    if (!object || ![object isKindOfClass:[self class]]) return NO;
+    if (![(id)[self identifier] isEqual:[object identifier]]) return NO;
+    
+    return YES;
+}
+
+- (NSUInteger)hash {
+    return [self.identifier hash];
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"task: %@, enabled: %@",
+            self.identifier,
+            (self.isEnabled ? @"true" : @"false")];
+}
+
+@end
+
 @interface HLTaskScheduler ()
 
 @property (nonatomic, strong) dispatch_queue_t queue;
-//@property (nonatomic, strong) dispatch_queue_t blockQueue;
 @property (nonatomic, strong) dispatch_source_t timer;
 
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, strong) NSMutableArray *completionBlocks;
+@property (nonatomic, copy)     NSString *name;
+@property (nonatomic, strong)   NSMutableOrderedSet<HLTask *> *tasks;
 
 @end
 
@@ -54,14 +104,14 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
 #pragma mark - Lifecycle
 
 - (void)dealloc {
-    [self removeCompletionBlocks];
-    if (_completionBlocks) {
-        _completionBlocks = nil;
+    [self destroyTimer];
+    [self removeAllTasks];
+    if (_tasks) {
+        _tasks = nil;
     }
     if (_queue != NULL) {
         _queue = NULL;
     }
-    [self destroyTimer];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -77,7 +127,7 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.completionBlocks = [NSMutableArray new];
+        self.tasks = [NSMutableOrderedSet new];
     }
     return self;
 }
@@ -93,7 +143,6 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
     }
     _name = name ? [name copy] : [NSString stringWithFormat:@"org.hanly.Scheduler(%s)", dispatch_queue_get_label(queue)];
     _queue = queue;
-//    _blockQueue = dispatch_queue_create([NSString stringWithFormat:@"%@.block", _name].UTF8String, DISPATCH_QUEUE_CONCURRENT);
     
     [self start];
     [self registerNotification];
@@ -133,8 +182,9 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
     return mainThreadScheduler;
 }
 
-- (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler {
-    [self addCompletionBlock:completionHandler];
+- (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler forIdentifier:(NSString *)identifier {
+    [self removeTaskForIdentifier:identifier];
+    [self addCompletionBlock:completionHandler forIdentifier:identifier];
 }
 
 - (void)start {
@@ -153,8 +203,20 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
 
 - (void)reset {
     NSLog(@"Task Scheduler Reset");
+    [self stop];
+    [self removeAllTasks];
+}
+
+- (void)enableTaskWithIdentifier:(NSString *)identifier {
+    NSLog(@"Task Scheduler `%@` task enabled", identifier);
     
-    [self removeCompletionBlocks];
+    [self addTaskWithCompletionBlock:<#^(void)block#> forIdentifier:<#(NSString *)#>:identifier];
+}
+
+- (void)disableTaskWithIdentifier:(NSString *)identifier {
+    NSLog(@"Task Scheduler `%@` disabled", identifier);
+    
+    [self removeTaskForIdentifier:identifier];
 }
 
 #pragma mark - Private Methods
@@ -162,112 +224,68 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
 - (void)createTimer {
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), (uint64_t)kHLTaskSchedulerIntervalTime * NSEC_PER_SEC, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
-//    [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
     dispatch_source_set_event_handler(self.timer, ^{
         HLLogD(@"%@", self);
         [self performCurrentScheduler];
     });
 }
 
-//- (void)updateTimer:(NSDate *)date interval:(NSTimeInterval)interval {
-//    NSParameterAssert(date != nil);
-//    NSParameterAssert(interval > 0.0 && interval < INT64_MAX / NSEC_PER_SEC);
-//    
-//    dispatch_time_t startTime = dispatch_time(DISPATCH_TIME_NOW, kHLTaskSchedulerIntervalTime);//[self.class wallTimeWithDate:date];
-//    uint64_t intervalInNanoSecs = (uint64_t)(kHLTaskSchedulerIntervalTime * NSEC_PER_SEC);
-//    
-//    dispatch_source_set_timer(self.timer, startTime, intervalInNanoSecs, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
-//}
-
 - (void)performCurrentScheduler {
-    NSArray *blocks = nil;
-    @synchronized (self) {
-        blocks = [NSArray arrayWithArray:self.completionBlocks];
-    }
+    NSArray<HLTask *> *tasks = [self copyAllTasks];
     
     __weak typeof(self) wSelf = self;
-    for (void (^block)(void) in blocks) {
+    for (HLTask *task in tasks) {
+        if (!task.isEnabled) {
+            continue;
+        }
         dispatch_async(self.queue, ^{//dispatch_get_main_queue() 在主线程执行会导致切换前后台不执行系统通告
             __strong typeof(wSelf) self = wSelf;
-            [self performBlock:block];
+            [self performBlock:task.completionBlock];
         });
     }
-    
 }
 
 - (void)performBlock:(void (^)(void))block {
     NSParameterAssert(block != NULL);
-
-//    HLTaskScheduler *previousScheduler = [HLTaskScheduler currentScheduler];
-//    NSThread.currentThread.threadDictionary[kHLTaskSchedulerCurrentSchedulerKey] = self;
     
     @autoreleasepool {
         block();
     }
-    
-//    if (previousScheduler) {
-//        NSThread.currentThread.threadDictionary[kHLTaskSchedulerCurrentSchedulerKey] = previousScheduler;
-//    } else {
-//        [NSThread.currentThread.threadDictionary removeObjectForKey:kHLTaskSchedulerCurrentSchedulerKey];
-//    }
 }
 
-- (void)addCompletionBlock:(void (^)(void))block {
+- (NSArray<HLTask *> *)copyAllTasks {
+    NSArray<HLTask *> *copyTasks = nil;
+    @synchronized (self) {
+        copyTasks = [NSArray arrayWithArray:self.tasks.array];
+    }
+    return copyTasks;
+}
+
+- (void)addTaskWithCompletionBlock:(void (^)(void))block forIdentifier:(NSString *)identifier {
     NSParameterAssert(block != nil);
     
     @synchronized (self) {
-        [self.completionBlocks addObject:[block copy]];
+        HLTask *task = [[HLTask alloc] initWithCompletionBlock:block identifier:identifier];
+        [self.tasks addObject:task];
     }
 }
 
-- (void)removeCompletionBlocks {
+- (void)removeTaskForIdentifier:(NSString *)identifier {
+    NSParameterAssert(identifier != nil);
+    
     @synchronized (self) {
-        [self.completionBlocks removeAllObjects];
+        HLLogD(@"Remove `%@` Task", identifier);
+        HLTask *task = [[HLTask alloc] initWithCompletionBlock:nil identifier:identifier];
+        [self.tasks removeObject:task];
     }
 }
 
-//- (dispatch_source_t)timer {
-//    if (!_timer) {
-//        
-//        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue);
-//        if (_timer != NULL) {
-//            dispatch_source_set_event_handler(_timer, ^{
-//                [self performCurrentScheduler];
-//            });
-//            
-//            [self updateTimer:[NSDate dateWithTimeIntervalSince1970:3] interval:3];
-//        }
-//    }
-//    return _timer;
-//}
+- (void)removeAllTasks {
+    @synchronized (self) {
+        [self.tasks removeAllObjects];
+    }
+}
 
 #pragma mark - Class Methods
 
-/*
-+ (dispatch_time_t)wallTimeWithDate:(NSDate *)date {
-    NSCParameterAssert(date != nil);
-    
-    double seconds = 0;
-    double frac = modf(date.timeIntervalSince1970, &seconds);
-    
-    struct timespec walltime = {
-        .tv_sec = (time_t)fmin(fmax(seconds, LONG_MIN), LONG_MAX),
-        .tv_nsec = (long)fmin(fmax(frac * NSEC_PER_SEC, LONG_MIN), LONG_MAX)
-    };
-    
-    return dispatch_walltime(&walltime, 0);
-}
-
-+ (HLTaskScheduler *)currentScheduler {
-    HLTaskScheduler *scheduler = NSThread.currentThread.threadDictionary[kHLTaskSchedulerCurrentSchedulerKey];
-    if (scheduler) {
-        return scheduler;
-    }
-    if ([NSThread isMainThread]) {
-        return HLTaskScheduler.mainThreadScheduler;
-    }
-    
-    return nil;
-}
-*/
 @end
