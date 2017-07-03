@@ -14,12 +14,16 @@
 
 + (instancetype)mainThreadScheduler;
 
-- (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler;
+- (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler forIdentifier:(NSString *)identifier;
 
 - (void)start;
 
 - (void)stop;
 
 - (void)reset;
+
+- (void)startTaskWithIdentifier:(NSString *)identifier;
+
+- (void)stopTaskWithIdentifier:(NSString *)identifier;
 
 @end

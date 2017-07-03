@@ -27,7 +27,7 @@
 NSString * const kHLTaskSchedulerCurrentSchedulerKey = @"HLTaskSchedulerCurrentSchedulerKey";
 
 #ifdef DEBUG
-static CGFloat const kHLTaskSchedulerIntervalTime = 15.0f;
+static CGFloat const kHLTaskSchedulerIntervalTime = 5.0f;
 #else
 static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
 #endif
@@ -49,6 +49,7 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
     if (self) {
         self.identifier = [identifier copy];
         self.completionBlock = [completionBlock copy];
+        self.enabled = YES;
     }
     return self;
 }
@@ -184,7 +185,7 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
 
 - (void)registerTaskWithCompletionHandler:(void (^)(void))completionHandler forIdentifier:(NSString *)identifier {
     [self removeTaskForIdentifier:identifier];
-    [self addCompletionBlock:completionHandler forIdentifier:identifier];
+    [self addTaskWithCompletionBlock:completionHandler forIdentifier:identifier];
 }
 
 - (void)start {
@@ -196,7 +197,7 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
 }
 
 - (void)stop {
-    NSLog(@"Task Scheduler Stop");
+    NSLog(@"Task Scheduler Stopped");
 
     [self destroyTimer];
 }
@@ -207,16 +208,26 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
     [self removeAllTasks];
 }
 
-- (void)enableTaskWithIdentifier:(NSString *)identifier {
+- (void)startTaskWithIdentifier:(NSString *)identifier {
     NSLog(@"Task Scheduler `%@` task enabled", identifier);
     
-    [self addTaskWithCompletionBlock:<#^(void)block#> forIdentifier:<#(NSString *)#>:identifier];
+    [self.tasks enumerateObjectsUsingBlock:^(HLTask * _Nonnull task, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([task.identifier isEqualToString:identifier]) {
+            task.enabled = YES;
+            *stop = YES;
+        }
+    }];
 }
 
-- (void)disableTaskWithIdentifier:(NSString *)identifier {
-    NSLog(@"Task Scheduler `%@` disabled", identifier);
+- (void)stopTaskWithIdentifier:(NSString *)identifier {
+    NSLog(@"Task Scheduler `%@` task disabled", identifier);
     
-    [self removeTaskForIdentifier:identifier];
+    [self.tasks enumerateObjectsUsingBlock:^(HLTask * _Nonnull task, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([task.identifier isEqualToString:identifier]) {
+            task.enabled = NO;
+            *stop = YES;
+        }
+    }];
 }
 
 #pragma mark - Private Methods
@@ -225,7 +236,7 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     dispatch_source_set_timer(self.timer, dispatch_time(DISPATCH_TIME_NOW, 0), (uint64_t)kHLTaskSchedulerIntervalTime * NSEC_PER_SEC, DISPATCH_TIME_FOREVER * NSEC_PER_SEC);
     dispatch_source_set_event_handler(self.timer, ^{
-        HLLogD(@"%@", self);
+//        HLLogD(@"%@", self);
         [self performCurrentScheduler];
     });
 }
@@ -240,6 +251,7 @@ static CGFloat const kHLTaskSchedulerIntervalTime = 60.0f;
         }
         dispatch_async(self.queue, ^{//dispatch_get_main_queue() 在主线程执行会导致切换前后台不执行系统通告
             __strong typeof(wSelf) self = wSelf;
+            HLLogD(@"Perform Task %@", task);
             [self performBlock:task.completionBlock];
         });
     }

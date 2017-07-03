@@ -24,30 +24,32 @@
     
     __block NSInteger i1 = 0;
     [[HLTaskScheduler scheduler] registerTaskWithCompletionHandler:^{
-        NSLog(@"2currentThread: %@", [NSThread currentThread]);
+        NSLog(@"1 currentThread: %@", [NSThread currentThread]);
         sleep(5);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.label1.text = [NSString stringWithFormat:@"%lu", i1++];
-        });
-        
-    }];
+    } forIdentifier:@"task1"];
     
     __block NSInteger i = 0;
     [[HLTaskScheduler mainThreadScheduler] registerTaskWithCompletionHandler:^{
-        NSLog(@"5currentThread: %@", [NSThread currentThread]);
+        NSLog(@"2 currentThread: %@", [NSThread currentThread]);
         self.textLabel.text = [NSString stringWithFormat:@"Main %lu", i++];
-    }];
+    } forIdentifier:@"task2"];
     
     [[HLTaskScheduler scheduler] registerTaskWithCompletionHandler:^{
-        NSLog(@"3currentThread: %@", [NSThread currentThread]);
+        NSLog(@"3 currentThread: %@", [NSThread currentThread]);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.label1.text = [NSString stringWithFormat:@"%lu", i1++];
+        });
         sleep(1);
-    }];
+    } forIdentifier:@"task1"];
 }
 - (IBAction)addTask:(id)sender {
     
+    NSString *identifier = [NSString stringWithFormat:@"addTask: %u", arc4random()];
     [[HLTaskScheduler mainThreadScheduler] registerTaskWithCompletionHandler:^{
-        NSLog(@"addTask: %u", arc4random());
-    }];
+        NSLog(@"Add Task %@", identifier);
+    } forIdentifier:identifier];
+    
+    [[HLTaskScheduler mainThreadScheduler] stopTaskWithIdentifier:@"task2"];
 }
 
 - (void)didReceiveMemoryWarning {
