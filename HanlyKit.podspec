@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "HanlyKit"
-  s.version          = "0.0.1"
+  s.version          = "0.0.2"
   s.summary          = "A common Kit used on iOS."
   s.description      = <<-DESC
                        It is a common Kit used on iOS, which implement by Objective-C.
